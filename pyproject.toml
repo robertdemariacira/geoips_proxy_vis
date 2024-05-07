@@ -72,7 +72,8 @@ dynamic = ["version"]
 # [project.entry-points."geoips.output_formatters"]
 # "@my_output_format_1@" = "@package@.plugins.modules.output_formatters.@my_output_format_1@"
 # "@my_output_format_2@" = "@package@.plugins.modules.output_formatters.@my_output_format_2@"
-# [project.entry-points."geoips.readers"]
+[project.entry-points."geoips.readers"]
+generic_satpy = "geoips.plugins.modules.readers.generic_satpy"
 # "@my_reader@" = "@package@.plugins.modules.readers.@myreader@"
 # [project.entry-points."geoips.trackfile_parsers"]
 # "@my_parser@" = "@package@.plugins.modules.trackfile_parsers.@my_parser@"

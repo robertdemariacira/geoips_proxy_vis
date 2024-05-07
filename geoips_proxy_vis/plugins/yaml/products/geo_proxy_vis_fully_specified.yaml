@@ -1,0 +1,19 @@
+interface: products
+family: list
+name: geo_proxy_vis_fully_specified
+docstring: |
+  A product to test satpy functionality.
+spec:
+  products:
+    - name: geo_proxy_vis
+      source_names: [abi]
+      docstring: |
+        GeoProxyVis
+      family: algorithm
+      spec:
+        algorithm:
+          plugin:
+            name: geo_proxy_vis
+            arguments: {}
+            docstring: Passes data from the satpy reader through.
+        variables: ["C02", "C07", "C11", "C13", "C15"]

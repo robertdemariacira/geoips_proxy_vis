@@ -61,6 +61,8 @@ dynamic = ["version"]
 
 [project.entry-points."geoips.algorithms"]
 "pmw_89test" = "geoips_proxy_vis.plugins.modules.algorithms.pmw_89test"
+"geo_proxy_vis" = "geoips_proxy_vis.plugins.modules.algorithms.geo_proxy_vis"
+
 
 # @ Add your own required entry points, based on your new functionality
 # [project.entry-points."geoips.algorithms"]

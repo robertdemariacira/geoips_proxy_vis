@@ -5,7 +5,7 @@ docstring: |
   A product to test satpy functionality.
 spec:
   products:
-    - name: geo_proxy_vis
+    - name: g16_geo_proxy_vis
       source_names: [abi]
       docstring: |
         GeoProxyVis
@@ -14,6 +14,6 @@ spec:
         algorithm:
           plugin:
             name: geo_proxy_vis
-            arguments: {}
-            docstring: Passes data from the satpy reader through.
+            arguments: {vis_channel_name: C02, ir_channels_to_pvis_args: {"C02": "c02", "C07":"c07", "C11": "c11", "C13": "c13", "C15": "c15"}}
+            docstring: Generates GeoProxyVis imagery for GOES 16 data.
         variables: ["C02", "C07", "C11", "C13", "C15"]

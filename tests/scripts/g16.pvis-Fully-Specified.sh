@@ -58,7 +58,7 @@ run_procflow \
     $GEOIPS_TESTDATA_DIR/pvis_g16/OR_ABI-L1b-RadF-M6C15_G16_s20241272010205_e20241272019519_c20241272019568.nc \
     --procflow single_source \
     --reader_name generic_satpy \
-    --product_name geo_proxy_vis \
+    --product_name g16_geo_proxy_vis \
     --output_formatter imagery_annotated \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \

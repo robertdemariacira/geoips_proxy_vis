@@ -14,6 +14,11 @@ spec:
         algorithm:
           plugin:
             name: geo_proxy_vis
-            arguments: {vis_channel_name: C02, ir_channels_to_pvis_args: {"C02": "c02", "C07":"c07", "C11": "c11", "C13": "c13", "C15": "c15"}}
+            arguments: 
+              vis_channel_name: C02
+              ir_channels_to_pvis_args: {"C07":"c07", "C11": "c11", "C13": "c13", "C15": "c15"}
+              satellite: "goes16"
+              minutes_interval: 10
+
             docstring: Generates GeoProxyVis imagery for GOES 16 data.
         variables: ["C02", "C07", "C11", "C13", "C15"]

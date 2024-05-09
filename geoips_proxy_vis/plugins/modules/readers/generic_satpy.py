@@ -76,6 +76,7 @@ def call(
         for channel_name in channel_names:
             channel = scene[channel_name]
             if is_first_channel:
+                is_first_channel = False
                 lons_np, lats_np = channel.attrs["area"].get_lonlats()
                 lons = xr.DataArray(lons_np, dims={"y": channel.y, "x": channel.x})
                 lats = xr.DataArray(lats_np, dims={"y": channel.y, "x": channel.x})

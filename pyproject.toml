@@ -71,7 +71,8 @@ dynamic = ["version"]
 # "@my_cmap@" = "@package@.plugins.modules.colormappers.@my_cmap@"
 # [project.entry-points."geoips.interpolators"]
 # "@my_interp@" = "@package@.plugins.modules.interpolators.@my_interp@"
-# [project.entry-points."geoips.output_formatters"]
+[project.entry-points."geoips.output_formatters"]
+satpy_tiles_formatter = "geoips_proxy_vis.plugins.modules.output_formatters.satpy_tiles_formatter"
 # "@my_output_format_1@" = "@package@.plugins.modules.output_formatters.@my_output_format_1@"
 # "@my_output_format_2@" = "@package@.plugins.modules.output_formatters.@my_output_format_2@"
 [project.entry-points."geoips.readers"]

@@ -59,7 +59,7 @@ run_procflow \
     --procflow single_source \
     --reader_name generic_satpy \
     --product_name g16_geo_proxy_vis \
-    --output_formatter imagery_annotated \
+    --output_formatter satpy_tiles_formatter \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
     --sector_list conus \

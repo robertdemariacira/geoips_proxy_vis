@@ -1,22 +1,23 @@
 """Empty plugin."""
 
 import logging
-from typing import Dict
+from typing import Any, Dict
 
 import numpy as np
+import xarray as xr
 from proxy_vis import combine_dn_pvis
 
 LOG = logging.getLogger(__name__)
 
 interface = "algorithms"
-family = "xarray_dict_to_xarray"
+family = "xarray_dict_to_xarray_dict"
 name = "geo_proxy_vis"
 
 VALID_OUTPUT_RES = (combine_dn_pvis.OUTPUT_RES_05KM, combine_dn_pvis.OUTPUT_RES_2KM)
 
 
 def call(
-    xarray_dict,
+    xarray_dict: Dict[str, Dict[str, Any]],
     vis_channel_name: str,
     ir_channels_to_pvis_args: Dict[str, str],
     satellite: str,
@@ -73,9 +74,9 @@ def call(
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
 
-    plot(out_data, "test.png")
-    breakpoint()
-    return data
+    out_dict = {"proxy_vis": xr.DataArray(out_data)}
+
+    return out_dict
 
 
 def plot(data: np.ndarray, filename: str) -> None:

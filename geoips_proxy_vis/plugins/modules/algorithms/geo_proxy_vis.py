@@ -74,7 +74,8 @@ def call(
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
 
-    out_dict = {"proxy_vis": xr.DataArray(out_data)}
+    breakpoint()
+    out_dict = {"g16_geo_proxy_vis": xr.DataArray(out_data)}
 
     return out_dict
 

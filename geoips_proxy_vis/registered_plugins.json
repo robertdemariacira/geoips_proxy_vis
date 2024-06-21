@@ -67,11 +67,11 @@
             },
             "geo_proxy_vis": {
                 "docstring": "Empty plugin.",
-                "family": "xarray_dict_to_xarray",
+                "family": "xarray_dict_to_xarray_dict",
                 "interface": "algorithms",
                 "package": "geoips_proxy_vis",
                 "plugin_type": "module_based",
-                "signature": "(xarray_dict)",
+                "signature": "(xarray_dict: Dict[str, Dict[str, Any]], vis_channel_name: str, ir_channels_to_pvis_args: Dict[str, str], satellite: str, minutes_interval: int, res_2km_name: str = '2km', res_0p5km_name='0.5km', lon_name='longitude', lat_name='latitude', pvis_alg='nighttime_pvis_main_two_eq', dvis_alg='vis_disp_sza', use_saved_params=True, output_res='0.5km')",
                 "relpath": "plugins/modules/algorithms/geo_proxy_vis.py"
             }
         },
@@ -84,6 +84,17 @@
                 "plugin_type": "module_based",
                 "signature": "(fnames: List[str], start_time_meta_path: str, end_time_meta_path: str, source_name: str, platform_name: str, metadata_only: bool = False, chans: Optional[List[str]] = None, area_def: Optional[pyresample.geometry.AreaDefinition] = None, self_register: bool = False, satpy_reader: str = 'ahi_hsd', channel_groups: Dict[str, List[str]] = {'0.5km': ['B09']}, roi: float = 3000, filter_parameters: Optional[Dict[str, Any]] = None, satpy_reader_kwargs: Optional[Dict[str, Any]] = None, calibration: Union[List[str], str] = '*', resolution: Union[List[float], float] = '*', polarization: Union[List[str], str] = '*', level: Union[List[float], str] = '*', modifiers: Union[List[str], str] = '*', generate: bool = True, unload: bool = True, load_kwargs: Optional[Dict[str, Any]] = None, force_compute: bool = False) -> Dict[str, xarray.core.dataarray.DataArray]",
                 "relpath": "plugins/modules/readers/generic_satpy.py"
+            }
+        },
+        "output_formatters": {
+            "satpy_tiles_formatter": {
+                "docstring": null,
+                "family": "xrdict_area_product_to_outlist",
+                "interface": "output_formatters",
+                "package": "geoips_proxy_vis",
+                "plugin_type": "module_based",
+                "signature": "(xarray_dict, area_def, product_name)",
+                "relpath": "plugins/modules/output_formatters/satpy_tiles_formatter.py"
             }
         }
     }

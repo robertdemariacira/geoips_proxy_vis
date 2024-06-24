@@ -75,6 +75,8 @@ def call(
         out_data = pvis_2km
 
     breakpoint()
+    # TODO: Return Xarray Dataset with var named g16_geo_proxy_vis
+    # Should have lons/lats from original data
     out_dict = {"g16_geo_proxy_vis": xr.DataArray(out_data)}
 
     return out_dict

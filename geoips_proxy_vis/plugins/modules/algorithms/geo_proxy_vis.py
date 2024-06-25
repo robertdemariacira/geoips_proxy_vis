@@ -10,7 +10,7 @@ from proxy_vis import combine_dn_pvis
 LOG = logging.getLogger(__name__)
 
 interface = "algorithms"
-family = "xarray_dict_to_xarray_dict"
+family = "xarray_dict_to_xarray"
 name = "geo_proxy_vis"
 
 VALID_OUTPUT_RES = (combine_dn_pvis.OUTPUT_RES_05KM, combine_dn_pvis.OUTPUT_RES_2KM)
@@ -71,15 +71,21 @@ def call(
     )
 
     out_data = pvis_0p5km
+    out_lons = vis_lons
+    out_lats = vis_lats
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
+        out_lons = ir_lons
+        out_lats = ir_lats
 
-    breakpoint()
     # TODO: Return Xarray Dataset with var named g16_geo_proxy_vis
     # Should have lons/lats from original data
-    out_dict = {"g16_geo_proxy_vis": xr.DataArray(out_data)}
+    out_ds = xr.Dataset(
+        data_vars={"g16_geo_proxy_vis": out_data},
+        coords={"longitude": out_lons, "latitude": out_lats},
+    )
 
-    return out_dict
+    return out_ds
 
 
 def plot(data: np.ndarray, filename: str) -> None:

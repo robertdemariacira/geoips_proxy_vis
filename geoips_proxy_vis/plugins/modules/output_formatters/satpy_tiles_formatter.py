@@ -5,11 +5,11 @@ import logging
 LOG = logging.getLogger(__name__)
 
 interface = "output_formatters"
-family = "xrdict_area_product_to_outlist"
+family = "xarray_data"
 name = "satpy_tiles_formatter"
 
 
-def call(xarray_dict, area_def, product_name):
+def call(xarray_obj, product_names, output_fnames):
     """Outputs data as netCDF tiles."""
     breakpoint()
     pass

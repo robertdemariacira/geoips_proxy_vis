@@ -62,7 +62,7 @@ run_procflow \
     --output_formatter satpy_tiles_formatter \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
-    --sector_list conus \
+    --no_presectoring \
     --reader_kwargs '{"force_compute": true, "satpy_reader": "abi_l1b", "channel_groups":{"0.5km":["C02"], "2km":["C07", "C11", "C13", "C15"]}, "start_time_meta_path":"start_time", "end_time_meta_path":"end_time", "source_name":"abi", "platform_name":"goes16"}'
 ss_retval=$?
 

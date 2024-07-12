@@ -3,7 +3,7 @@
     "yaml_based": {
         "product_defaults": {
             "89-PCT-Test": {
-                "docstring": "The default product_defaults_source_name plugin configuration.\n",
+                "docstring": "The default product_defaults_source_name plugin configuration.",
                 "family": "interpolator_algorithm_colormapper",
                 "interface": "product_defaults",
                 "package": "geoips_proxy_vis",
@@ -14,7 +14,7 @@
         "products": {
             "amsr2": {
                 "89-PCT-Fully-Specified": {
-                    "docstring": "The amsr2_fully_specified implementation of 89 MHz Polarization Corrected\nBrightness Temperature.\n",
+                    "docstring": "The amsr2_fully_specified implementation of 89 MHz Polarization Corrected Brightness Temperature.",
                     "family": "interpolator_algorithm_colormapper",
                     "interface": "products",
                     "package": "geoips_proxy_vis",
@@ -26,7 +26,7 @@
                     "relpath": "plugins/yaml/products/amsr2_fully_specified.yaml"
                 },
                 "89-PCT-Using-Product-Defaults": {
-                    "docstring": "89 MHz Polarization Corrected Brightness Temperature implementation\nusing the 89-PCT-Test product defaults in the product definition.\n",
+                    "docstring": "89 MHz Polarization Corrected Brightness Temperature implementation using the 89-PCT-Test product defaults in the product definition.",
                     "family": null,
                     "interface": "products",
                     "package": "geoips_proxy_vis",
@@ -40,7 +40,7 @@
             },
             "abi": {
                 "g16_geo_proxy_vis": {
-                    "docstring": "GeoProxyVis\n",
+                    "docstring": "GeoProxyVis",
                     "family": "algorithm",
                     "interface": "products",
                     "package": "geoips_proxy_vis",
@@ -57,7 +57,7 @@
     "module_based": {
         "algorithms": {
             "pmw_89test": {
-                "docstring": "Sample algorithm plugin, duplicate of \"89pct\".\n\nDuplicate of Passive Microwave 89 GHz Polarization Corrected Temperature.\nData manipulation steps for the \"89test\" product, duplicate of \"89pct\".\nThis algorithm expects Brightness Temperatures in units of degrees Kelvin\n",
+                "docstring": "Sample algorithm plugin, duplicate of \"89pct\".\nDuplicate of Passive Microwave 89 GHz Polarization Corrected Temperature.\nData manipulation steps for the \"89test\" product, duplicate of \"89pct\".\nThis algorithm expects Brightness Temperatures in units of degrees Kelvin",
                 "family": "xarray_to_xarray",
                 "interface": "algorithms",
                 "package": "geoips_proxy_vis",
@@ -67,7 +67,7 @@
             },
             "geo_proxy_vis": {
                 "docstring": "Empty plugin.",
-                "family": "xarray_dict_to_xarray_dict",
+                "family": "xarray_dict_to_xarray",
                 "interface": "algorithms",
                 "package": "geoips_proxy_vis",
                 "plugin_type": "module_based",
@@ -88,12 +88,12 @@
         },
         "output_formatters": {
             "satpy_tiles_formatter": {
-                "docstring": null,
-                "family": "xrdict_area_product_to_outlist",
+                "docstring": "Output formatter to write data as netCDF tiles.",
+                "family": "xarray_data",
                 "interface": "output_formatters",
                 "package": "geoips_proxy_vis",
                 "plugin_type": "module_based",
-                "signature": "(xarray_dict, area_def, product_name)",
+                "signature": "(xarray_obj, product_names, output_fnames)",
                 "relpath": "plugins/modules/output_formatters/satpy_tiles_formatter.py"
             }
         }

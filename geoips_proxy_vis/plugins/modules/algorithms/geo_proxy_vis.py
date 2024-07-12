@@ -83,7 +83,7 @@ def call(
 
     # TODO: Return Xarray Dataset with var named g16_geo_proxy_vis
     # Should have lons/lats from original data
-
+    breakpoint()
     out_ds = xr.Dataset(data_vars={"g16_geo_proxy_vis": out_data_array})
 
     return out_ds

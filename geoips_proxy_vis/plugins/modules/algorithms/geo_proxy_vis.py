@@ -10,7 +10,7 @@ from proxy_vis import combine_dn_pvis
 LOG = logging.getLogger(__name__)
 
 interface = "algorithms"
-family = "xarray_dict_to_xarray"
+family = "xarray_dict_to_xarray_dict"
 name = "geo_proxy_vis"
 
 VALID_OUTPUT_RES = (combine_dn_pvis.OUTPUT_RES_05KM, combine_dn_pvis.OUTPUT_RES_2KM)
@@ -83,6 +83,7 @@ def call(
 
     # TODO: Return Xarray Dataset with var named g16_geo_proxy_vis
     # Should have lons/lats from original data
+    plot(out_data, "test.png")
     breakpoint()
     out_ds = xr.Dataset(data_vars={"g16_geo_proxy_vis": out_data_array})
 
@@ -97,7 +98,7 @@ def plot(data: np.ndarray, filename: str) -> None:
     ax = fig.add_subplot(1, 1, 1)
     ax.axis("off")
     ax.imshow(data, vmin=0.0, vmax=1.3, cmap="Greys_r")
-    fig.savefig(filename, dpi=550, bbox_inches="tight", pad_inches=0, transparent=True)
+    fig.savefig(filename, dpi=1200, bbox_inches="tight", pad_inches=0, transparent=True)
 
 
 def _normalize_output_res(output_res) -> str:

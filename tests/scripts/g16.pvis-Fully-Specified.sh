@@ -19,6 +19,7 @@ run_procflow \
     $GEOIPS_TESTDATA_DIR/pvis_g16/OR_ABI-L1b-RadF-M6C13_G16_s20241272010205_e20241272019525_c20241272019580.nc \
     $GEOIPS_TESTDATA_DIR/pvis_g16/OR_ABI-L1b-RadF-M6C15_G16_s20241272010205_e20241272019519_c20241272019568.nc \
     --procflow single_source \
+    -l debug \
     --reader_name generic_satpy \
     --product_name g16_geo_proxy_vis \
     --output_formatter satpy_tiles_formatter \

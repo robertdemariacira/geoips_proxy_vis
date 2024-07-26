@@ -42,3 +42,5 @@ proxy_vis = { git = "https://github.com/galina-cira/ProxyVis" }
 
 [tool.poetry.plugins."geoips.plugin_packages"]
 "geoips_proxy_vis" = "geoips_proxy_vis"
+"generic_satpy" = "geoips_proxy_vis.plugins.modules.readers"
+"satpy_tiles_formatter" = "geoips_proxy_vis.plugins.modules.output_formatters"

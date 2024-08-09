@@ -23,6 +23,7 @@ run_procflow \
     --reader_name generic_satpy \
     --product_name g16_geo_proxy_vis \
     --output_formatter satpy_tiles_formatter \
+    --output_formatter_kwargs '{"config_path": "foobar.yml"}' \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
     --no_presectoring \

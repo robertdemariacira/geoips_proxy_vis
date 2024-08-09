@@ -3,6 +3,7 @@
 import logging
 from typing import Any, Dict
 
+import dask
 import numpy as np
 import xarray as xr
 from proxy_vis import combine_dn_pvis
@@ -77,17 +78,29 @@ def call(
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
 
+    as_dask = dask.array.from_array(out_data)
+
+    # Add attributes needed by AWIPS tiles writer
+    orbital_params = vis_channel.attrs["orbital_parameters"]
+    out_attrs = {
+        "area": area_def,
+        "product_center_latitude": orbital_params["projection_latitude"],
+        "product_center_longitude": orbital_params["projection_longitude"],
+        "satellite_latitude": orbital_params["projection_latitude"],
+        "satellite_longitude": orbital_params["projection_longitude"],
+        "satellite_altitude": orbital_params["satellite_actual_altitude"],
+        "wavelength_float": vis_channel.attrs["wavelength"].central,
+        "start_time": start_time,
+    }
+
     out_data_array = xr.DataArray(
-        out_data, dims=["y", "x"], coords={"x": x, "y": y}, attrs={"area": area_def}
+        as_dask, dims=["y", "x"], coords={"x": x, "y": y}, attrs=out_attrs
     )
 
-    # TODO: Return Xarray Dataset with var named g16_geo_proxy_vis
-    # Should have lons/lats from original data
-    plot(out_data, "test.png")
-    breakpoint()
-    out_ds = xr.Dataset(data_vars={"g16_geo_proxy_vis": out_data_array})
+    out_ds = xr.Dataset(data_vars={"proxy_vis": out_data_array})
+    out_dict = {"proxy_vis": out_ds, "METADATA": xarray_dict["METADATA"]}
 
-    return out_ds
+    return out_dict
 
 
 def plot(data: np.ndarray, filename: str) -> None:

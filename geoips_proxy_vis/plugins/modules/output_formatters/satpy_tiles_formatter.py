@@ -27,7 +27,7 @@ def call(
 ):
     """Outputs data as netCDF tiles."""
     out_scene = satpy.Scene()
-    out_scene[output_var_name] = xarray_obj[xarray_var_name]
+    out_scene[output_var_name] = xarray_obj[xarray_var_name][xarray_var_name]
 
     template = _read_template(config_path)
 

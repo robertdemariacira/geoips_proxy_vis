@@ -23,7 +23,7 @@ run_procflow \
     --reader_name generic_satpy \
     --product_name g16_geo_proxy_vis \
     --output_formatter satpy_tiles_formatter \
-    --output_formatter_kwargs '{"config_path": "tests/configs/foobar.yml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"/home/rdemaria/projects/2024/geoips_proxy_vis/tests/outputs", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"GH8", "tile_size":[2200, 2750]}' \
+    --output_formatter_kwargs '{"config_path": "tests/configs/proxy_vis_tile_template.yaml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"/home/rdemaria/projects/2024/geoips_proxy_vis/tests/outputs", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"GH8", "tile_size":[2200, 2750]}' \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
     --no_presectoring \

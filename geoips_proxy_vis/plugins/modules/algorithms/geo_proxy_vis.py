@@ -15,6 +15,7 @@ family = "xarray_dict_to_xarray_dict"
 name = "geo_proxy_vis"
 
 VALID_OUTPUT_RES = (combine_dn_pvis.OUTPUT_RES_05KM, combine_dn_pvis.OUTPUT_RES_2KM)
+DATA_ARRAY_CHUNKS = 4096
 
 
 def call(
@@ -73,7 +74,12 @@ def call(
 
     out_data = pvis_0p5km
     area_def = vis_channel.attrs["area"]
-    x, y = area_def.get_proj_vectors()
+    x, y = dask.compute(vis_channel.coords["x"], vis_channel.coords["y"])
+    x.attrs["area"] = area_def
+    y.attrs["area"] = area_def
+    # x, y = area_def.get_proj_vectors()
+    # x_da = xr.DataArray(x, attrs={"area": area_def})
+    # y_da = xr.DataArray(y, attrs={"area": area_def})
 
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
@@ -88,7 +94,7 @@ def call(
         "product_center_longitude": orbital_params["projection_longitude"],
         "satellite_latitude": orbital_params["projection_latitude"],
         "satellite_longitude": orbital_params["projection_longitude"],
-        "satellite_altitude": orbital_params["satellite_actual_altitude"],
+        "satellite_altitude": orbital_params["projection_altitude"],
         "wavelength_float": vis_channel.attrs["wavelength"].central,
         "start_time": start_time,
     }

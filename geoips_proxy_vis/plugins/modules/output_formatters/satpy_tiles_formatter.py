@@ -24,10 +24,16 @@ def call(
     source_name: str,
     sector_id: str,
     tile_size: Tuple[int, int],
+    satellite_altitude_attrib_name: str,
+    fake_channel: int,
 ):
     """Outputs data as netCDF tiles."""
     out_scene = satpy.Scene()
     out_scene[output_var_name] = xarray_obj[xarray_var_name][xarray_var_name]
+
+    _add_tiles_metadata(
+        out_scene[output_var_name], satellite_altitude_attrib_name, fake_channel
+    )
 
     template = _read_template(config_path)
 
@@ -44,6 +50,28 @@ def call(
     breakpoint()
 
     return [output_path]
+
+
+def _add_tiles_metadata(
+    data: xr.DataArray, satellite_altitude_attrib_name: str, fake_channel: int
+) -> None:
+    data.attrs["product_center_latitude"] = data.attrs["orbital_parameters"][
+        "projection_latitude"
+    ]
+    data.attrs["product_center_longitude"] = data.attrs["orbital_parameters"][
+        "projection_longitude"
+    ]
+    data.attrs["satellite_latitude"] = data.attrs["orbital_parameters"][
+        "projection_latitude"
+    ]
+    data.attrs["satellite_longitude"] = data.attrs["orbital_parameters"][
+        "projection_longitude"
+    ]
+    data.attrs["satellite_altitude"] = data.attrs["orbital_parameters"][
+        satellite_altitude_attrib_name
+    ]
+    data.attrs["channel"] = fake_channel
+    data.attrs["wavelength_float"] = data.attrs["wavelength"].central
 
 
 def _read_template(filename: str) -> Dict[str, Any]:

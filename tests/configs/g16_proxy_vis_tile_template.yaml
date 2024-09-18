@@ -1,13 +1,10 @@
 single_variable: true
-# filename: "{source_name}_AII_{platform_name}_{sensor}_{name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc"
 
-# This is probably wrong and I'm setting the fractional second to 0 because as
-# far as I'm aware, python doesn't have a format character to represent that.
-filename: "{environment_prefix}_HFD-005-B11-PRVIS-{tile_id}_{sector_id}_s{start_time:%Y%j%H%M%S}_c{creation_time:%Y%j%H%M%S}.nc"
+filename: "OR_ABI-L3-PRVIS-{tile_id}_{sector_id}_s{start_time:%Y%j%H%M%S}_c{creation_time:%Y%j%H%M%S}.nc"
 
 global_attributes:
   product_name:
-    value: "HFD-005-B11-M1C03"
+    value: "EFD-005-B11-M1C03"
   ICD_version:
     value: "SE-08_7034704_GS_AWIPS_Ext_ICD_RevB.3"
   abi_mode:

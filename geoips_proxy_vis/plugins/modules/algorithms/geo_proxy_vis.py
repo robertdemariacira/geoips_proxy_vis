@@ -1,7 +1,7 @@
 """Empty plugin."""
 
 import logging
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import dask
 import numpy as np
@@ -32,6 +32,7 @@ def call(
     dvis_alg="vis_disp_sza",
     use_saved_params=True,
     output_res=combine_dn_pvis.OUTPUT_RES_05KM,
+    fill_value: Optional[int] = None,
 ):
     norm_output_res = _normalize_output_res(output_res)
     if norm_output_res not in VALID_OUTPUT_RES:
@@ -84,6 +85,10 @@ def call(
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km
 
+    if fill_value is not None:
+        fill_mask = ~np.isfinite(out_data)
+        out_data[fill_mask] = fill_value
+
     as_dask = dask.array.from_array(out_data)
 
     # Add attributes needed by AWIPS tiles writer
@@ -98,6 +103,9 @@ def call(
         "wavelength_float": vis_channel.attrs["wavelength"].central,
         "start_time": start_time,
     }
+
+    if fill_value is not None:
+        out_attrs["_FillValue"] = fill_value
 
     out_data_array = xr.DataArray(
         as_dask, dims=["y", "x"], coords={"x": x, "y": y}, attrs=out_attrs

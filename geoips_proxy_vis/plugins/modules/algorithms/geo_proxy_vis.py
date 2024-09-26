@@ -78,9 +78,6 @@ def call(
     x, y = dask.compute(vis_channel.coords["x"], vis_channel.coords["y"])
     x.attrs["area"] = area_def
     y.attrs["area"] = area_def
-    # x, y = area_def.get_proj_vectors()
-    # x_da = xr.DataArray(x, attrs={"area": area_def})
-    # y_da = xr.DataArray(y, attrs={"area": area_def})
 
     if norm_output_res == combine_dn_pvis.OUTPUT_RES_2KM:
         out_data = pvis_2km

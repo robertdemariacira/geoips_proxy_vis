@@ -41,8 +41,6 @@ def call(
         template=template,
     )
 
-    breakpoint()
-
     return [output_path]
 
 

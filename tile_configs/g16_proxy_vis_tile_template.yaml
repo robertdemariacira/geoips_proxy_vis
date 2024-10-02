@@ -79,7 +79,7 @@ variables:
       physical_element:
         value: "{name}"
       units:
-        value: "{units}"
+        value: "%"
       standard_name:
         value: "{standard_name}"
     encoding:

@@ -8,7 +8,7 @@ spec:
     - name: g16_geo_proxy_vis
       source_names: [abi]
       docstring: |
-        GeoProxyVis
+        GeoProxyVis G16
       family: unsectored_xarray_dict_to_algorithm_to_output_format
       spec:
         algorithm:
@@ -23,3 +23,21 @@ spec:
 
             docstring: Generates GeoProxyVis imagery for GOES 16 data.
         variables: ["C02", "C07", "C11", "C13", "C15"]
+    - name: ahi9_geo_proxy_vis
+      source_names: [ahi9]
+      docstring: |
+        GeoProxyVis ahi9
+      family: unsectored_xarray_dict_to_algorithm_to_output_format
+      spec:
+        algorithm:
+          plugin:
+            name: geo_proxy_vis
+            arguments:
+              vis_channel_name: B03
+              ir_channels_to_pvis_args: {"B07":"c07", "B11": "c11", "B13": "c13", "B15": "c15"}
+              satellite: "himawari9"
+              minutes_interval: 10
+              fill_value: -1
+
+            docstring: Generates GeoProxyVis imagery for Himawari 9 data.
+        variables: ["B03", "B07", "B11", "B13", "B15"]

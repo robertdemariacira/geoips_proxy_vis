@@ -1,0 +1,90 @@
+single_variable: true
+# filename: "{source_name}_AII_{platform_name}_{sensor}_{name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc"
+
+# This is probably wrong and I'm setting the fractional second to 0 because as
+# far as I'm aware, python doesn't have a format character to represent that.
+filename: "OR_MFD-030-B10-M1C01-{tile_id}_M9_{start_time:%Y%m%d_%H%M}.nc"
+
+global_attributes:
+  product_name:
+    value: "MFD-030-B10-M1C01"
+  ICD_version:
+    value: "SE-08_7034704_GS_AWIPS_Ext_ICD_RevB.3"
+  abi_mode:
+    value: "1"
+  bit_depth:
+    value: 16
+  central_wavelength:
+    raw_key: "wavelength_float"
+  channel_id:
+    raw_key: 'channel'
+  periodicity:
+    value: 15
+  pixel_x_size:
+    raw_key: 'resolution'
+  pixel_y_size:
+    raw_key: 'resolution'
+  title:
+    value: "Sectorized Cloud and Moisture Full Disk Imagery"
+  production_location:
+    value: "CIRA"
+  satellite_id:
+    value: "Meteosat-9"
+  source_scene:
+    value: "Full Disk"
+  projection:
+    value: "fixedgrid_projection"
+  source_spatial_resolution:
+    raw_key: 'resolution'
+  request_spatial_resolution:
+    raw_key: 'resolution'
+  start_date_time:
+    value: "{start_time:%Y%j%H%M%S}"
+  tile_center_latitude:
+    value: ""
+  tile_center_longitude:
+    value: ""
+  product_center_latitude:
+    raw_key: 'product_center_latitude'
+  product_center_longitude:
+    raw_key: 'product_center_longitude'
+  satellite_latitude:
+    raw_key: 'satellite_latitude'
+  satellite_longitude:
+    raw_key: 'satellite_longitude'
+  satellite_altitude:
+    raw_key: 'satellite_altitude'
+
+coordinates:
+  x:
+    attributes:
+      units:
+        value: "{units}"
+    encoding:
+      dtype: "int16"
+      _Unsigned: "true"
+  y:
+    attributes:
+      units:
+        value: "{units}"
+    encoding:
+      dtype: "int16"
+      _Unsigned: "true"
+
+
+variables:
+  # The name of the "band" in the Satpy scene to write to the file.  The real
+  # application will have a "proxy-vis" band in the scene that will get written
+  # out.
+  B03:
+    var_name: "Sectorized_CMI" # The name that should be used in the nc files.
+    attributes:
+      physical_element:
+        value: "{name}"
+      units:
+        value: "{units}"
+      standard_name:
+        value: "{standard_name}"
+    encoding:
+      dtype: int16
+      _Unsigned: "true"

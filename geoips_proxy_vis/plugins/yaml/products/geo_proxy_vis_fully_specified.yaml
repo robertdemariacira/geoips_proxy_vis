@@ -41,3 +41,23 @@ spec:
 
             docstring: Generates GeoProxyVis imagery for Himawari 9 data.
         variables: ["B03", "B07", "B11", "B13", "B15"]
+    - name: m9_geo_proxy_vis
+      source_names: [meteosat9]
+      docstring: |
+        GeoProxyVis m9
+      family: unsectored_xarray_dict_to_algorithm_to_output_format
+      spec:
+        algorithm:
+          plugin:
+            name: geo_proxy_vis
+            arguments:
+              vis_channel_name: VIS006
+              ir_channels_to_pvis_args: {"IR_039":"c07", "IR_087": "c11", "IR_108": "c13", "IR_120": "c15"}
+              satellite: "meteosat-9"
+              minutes_interval: 15
+              fill_value: -1
+              res_2km_name: ir
+              res_0p5km_name: vis
+
+            docstring: Generates GeoProxyVis imagery for Himawari 9 data.
+        variables: ["VIS006", "IR_039", "IR_087", "IR_108", "IR_120"]

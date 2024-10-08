@@ -26,7 +26,7 @@ global_attributes:
   production_location:
     value: "CIRA"
   satellite_id:
-    value: "GOES-H8"
+    value: "GOES-16"
   source_scene:
     value: "Full Disk"
   projection:

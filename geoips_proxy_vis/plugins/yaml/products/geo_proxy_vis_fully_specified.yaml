@@ -23,6 +23,24 @@ spec:
 
             docstring: Generates GeoProxyVis imagery for GOES 16 data.
         variables: ["C02", "C07", "C11", "C13", "C15"]
+    - name: g18_geo_proxy_vis
+      source_names: [abi]
+      docstring: |
+        GeoProxyVis G18
+      family: unsectored_xarray_dict_to_algorithm_to_output_format
+      spec:
+        algorithm:
+          plugin:
+            name: geo_proxy_vis
+            arguments:
+              vis_channel_name: C02
+              ir_channels_to_pvis_args: {"C07":"c07", "C11": "c11", "C13": "c13", "C15": "c15"}
+              satellite: "goes18"
+              minutes_interval: 10
+              fill_value: -1
+
+            docstring: Generates GeoProxyVis imagery for GOES 18 data.
+        variables: ["C02", "C07", "C11", "C13", "C15"]
     - name: ahi9_geo_proxy_vis
       source_names: [ahi9]
       docstring: |

@@ -77,7 +77,7 @@ variables:
   # application will have a "proxy-vis" band in the scene that will get written
   # out.
   B03:
-    var_name: "Sectorized_CMI" # The name that should be used in the nc files.
+    var_name: "proxyvis" # The name that should be used in the nc files.
     attributes:
       physical_element:
         value: "{name}"

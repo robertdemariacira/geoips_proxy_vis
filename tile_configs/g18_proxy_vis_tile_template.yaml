@@ -1,13 +1,10 @@
 single_variable: true
-# filename: "{source_name}_AII_{platform_name}_{sensor}_{name}_{sector_id}_{tile_id}_{start_time:%Y%m%d_%H%M}.nc"
 
-# This is probably wrong and I'm setting the fractional second to 0 because as
-# far as I'm aware, python doesn't have a format character to represent that.
-filename: "OR_MFD-030-B10-M1C01-{tile_id}_M11_{start_time:%Y%m%d_%H%M}.nc"
+filename: "OR_ABI-L3-PRVIS-{tile_id}_{sector_id}_s{start_time:%Y%j%H%M%S}_c{creation_time:%Y%j%H%M%S}.nc"
 
 global_attributes:
   product_name:
-    value: "MFD-030-B10-M1C01"
+    value: "WFD-005-B11-M1C03"
   ICD_version:
     value: "SE-08_7034704_GS_AWIPS_Ext_ICD_RevB.3"
   abi_mode:
@@ -17,9 +14,9 @@ global_attributes:
   central_wavelength:
     raw_key: "wavelength_float"
   channel_id:
-    raw_key: 'channel'
+    raw_value: 17
   periodicity:
-    value: 15
+    value: 10
   pixel_x_size:
     raw_key: 'resolution'
   pixel_y_size:
@@ -29,7 +26,7 @@ global_attributes:
   production_location:
     value: "CIRA"
   satellite_id:
-    value: "Meteosat-11"
+    value: "GOES-18"
   source_scene:
     value: "Full Disk"
   projection:
@@ -39,7 +36,7 @@ global_attributes:
   request_spatial_resolution:
     raw_key: 'resolution'
   start_date_time:
-    value: "{start_time:%Y%j%H%M%S}"
+    value: "{start_time:%Y%m%d%H%M%S}"
   tile_center_latitude:
     value: ""
   tile_center_longitude:
@@ -82,9 +79,10 @@ variables:
       physical_element:
         value: "{name}"
       units:
-        value: "{units}"
+        value: "%"
       standard_name:
         value: "{standard_name}"
     encoding:
       dtype: int16
       _Unsigned: "true"
+

@@ -134,7 +134,7 @@ run_procflow \
     --reader_name generic_satpy \
     --product_name m9_geo_proxy_vis \
     --output_formatter satpy_tiles_formatter \
-    --output_formatter_kwargs '{"config_path": "tile_configs/m9_proxy_vis_tile_template.yaml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"/home/rdemaria/projects/2024/geoips_proxy_vis/tests/outputs/m9_tiles/", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"M9", "tile_size":[464, 464], "fake_channel":1}' \
+    --output_formatter_kwargs '{"config_path": "tile_configs/m9_proxy_vis_tile_template.yaml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"tests/outputs/m9_tiles/", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"M9", "tile_size":[464, 464], "fake_channel":1}' \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
     --no_presectoring \

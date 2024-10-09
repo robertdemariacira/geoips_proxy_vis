@@ -4,7 +4,8 @@ filename: "OR_ABI-L3-PRVIS-{tile_id}_{sector_id}_s{start_time:%Y%j%H%M%S}_c{crea
 
 global_attributes:
   product_name:
-    value: "WFD-005-B11-M1C03"
+    # value: "WFD-005-B11-M1C03"
+    value: "EFD-005-B11-M1C03"
   ICD_version:
     value: "SE-08_7034704_GS_AWIPS_Ext_ICD_RevB.3"
   abi_mode:
@@ -26,7 +27,8 @@ global_attributes:
   production_location:
     value: "CIRA"
   satellite_id:
-    value: "GOES-18"
+    # value: "GOES-18"
+    value: "GOES-H8"
   source_scene:
     value: "Full Disk"
   projection:

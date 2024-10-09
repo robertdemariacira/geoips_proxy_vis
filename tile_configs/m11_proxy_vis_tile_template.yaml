@@ -7,7 +7,8 @@ filename: "OR_MFD-030-B10-M1C01-{tile_id}_M11_{start_time:%Y%m%d_%H%M}.nc"
 
 global_attributes:
   product_name:
-    value: "MFD-030-B10-M1C01"
+    # value: "MFD-030-B10-M1C01"
+    value: "EFD-030-B10-M1C01"
   ICD_version:
     value: "SE-08_7034704_GS_AWIPS_Ext_ICD_RevB.3"
   abi_mode:
@@ -15,7 +16,8 @@ global_attributes:
   bit_depth:
     value: 16
   central_wavelength:
-    raw_key: "wavelength_float"
+    # raw_key: "wavelength_float"
+    value: 0.64
   channel_id:
     raw_key: 'channel'
   periodicity:
@@ -29,7 +31,8 @@ global_attributes:
   production_location:
     value: "CIRA"
   satellite_id:
-    value: "Meteosat-11"
+    # value: "Meteosat-11"
+    value: "GOES-H8"
   source_scene:
     value: "Full Disk"
   projection:
@@ -39,7 +42,8 @@ global_attributes:
   request_spatial_resolution:
     raw_key: 'resolution'
   start_date_time:
-    value: "{start_time:%Y%j%H%M%S}"
+    # value: "{start_time:%Y%j%H%M%S}"
+    value: "{start_time:%Y%m%d%H%M%S}"
   tile_center_latitude:
     value: ""
   tile_center_longitude:

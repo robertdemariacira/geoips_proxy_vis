@@ -12,7 +12,7 @@
 
 #!/bin/bash
 
-data_subdir=pvis_test_data/m11/20241008/1700
+data_subdir=pvis_test_data/m10/20241008/1700
 
 run_procflow \
     $GEOIPS_TESTDATA_DIR/$data_subdir/H-000-MSG3__-MSG3________-_________-EPI______-202410081700-__ \
@@ -132,13 +132,13 @@ run_procflow \
     --procflow single_source \
     -l debug \
     --reader_name generic_satpy \
-    --product_name m11_geo_proxy_vis \
+    --product_name m10_geo_proxy_vis \
     --output_formatter satpy_tiles_formatter \
-    --output_formatter_kwargs '{"config_path": "tile_configs/m11_proxy_vis_tile_template.yaml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"tests/outputs/m11_tiles/", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"M11", "tile_size":[464, 464], "fake_channel":1}' \
+    --output_formatter_kwargs '{"config_path": "tile_configs/m10_proxy_vis_tile_template.yaml", "xarray_var_name":"proxy_vis", "output_var_name":"proxy_vis", "output_path":"tests/outputs/m10_tiles/", "environment_prefix":"OR", "source_name":"CIRA", "sector_id":"M10", "tile_size":[464, 464], "fake_channel":1}' \
     --filename_formatter geoips_fname \
     --minimum_coverage 0 \
     --no_presectoring \
-    --reader_kwargs '{"force_compute": true, "satpy_reader": "seviri_l1b_hrit", "channel_groups":{"vis":["VIS006"], "ir":["IR_039", "IR_087", "IR_108", "IR_120"]}, "source_name":"meteosat11", "platform_name":"meteosat11", "load_kwargs":{"upper_right_corner":"NE"}}'
+    --reader_kwargs '{"force_compute": true, "satpy_reader": "seviri_l1b_hrit", "channel_groups":{"vis":["VIS006"], "ir":["IR_039", "IR_087", "IR_108", "IR_120"]}, "source_name":"meteosat10", "platform_name":"meteosat10", "load_kwargs":{"upper_right_corner":"NE"}}'
 ss_retval=$?
 
 exit $((ss_retval))

@@ -79,10 +79,10 @@ spec:
 
             docstring: Generates GeoProxyVis imagery for Meteosat 9 data.
         variables: ["VIS006", "IR_039", "IR_087", "IR_108", "IR_120"]
-    - name: m11_geo_proxy_vis
-      source_names: [meteosat11]
+    - name: m10_geo_proxy_vis
+      source_names: [meteosat10]
       docstring: |
-        GeoProxyVis m11
+        GeoProxyVis m10
       family: unsectored_xarray_dict_to_algorithm_to_output_format
       spec:
         algorithm:
@@ -91,7 +91,7 @@ spec:
             arguments:
               vis_channel_name: VIS006
               ir_channels_to_pvis_args: {"IR_039":"c07", "IR_087": "c11", "IR_108": "c13", "IR_120": "c15"}
-              satellite: "meteosat-11"
+              satellite: "meteosat-10"
               minutes_interval: 15
               fill_value: -1
               res_2km_name: ir

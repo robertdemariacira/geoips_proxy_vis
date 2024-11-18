@@ -1,93 +1,22 @@
-    # # # Distribution Statement A. Approved for public release. Distribution unlimited.
-    # # #
-    # # # Author:
-    # # # Naval Research Laboratory, Marine Meteorology Division
-    # # #
-    # # # This program is free software: you can redistribute it and/or modify it under
-    # # # the terms of the NRLMMD License included with this program. This program is
-    # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
-    # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
-    # # # for more details. If you did not receive the license, for more information see:
-    # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+# GeoIPS ProxyVis Plugin
 
-Basic GeoIPS Plugin Template
-=============================
+This repo provides an algorithm and output formatter plugin that will generate
+ProxyVis imagery and output as AWIPS2 compatible tiles.  The ProxyVis plugin
+assumes that the generic Satpy reader plugin is used to provide input.  It is
+possible that this code will work with other satellites, however it has only
+been tested with Meteosat, Himawari, and GOES data.
 
-This template repository contains everything necessary to create a fully
-compatible GeoIPS Plugin Package.  Each file within this repository contains
-appropriate modification instructions.
+## Example Scripts/YAML Products
 
-To create your own functional plugin for GeoIPS, follow the
-[step by step instructions](./docs/source/userguide/template_instructions.rst) for
-modifying the template files within this repo.
+Example YAML products have been provided demonstrating how to use this code to
+produce ProxyVis AWIPS2 tiles.  The example scripts can be found in the
+`tests/scripts/` dir. These make use of example YAML products provided in the
+`geoips_proxy_vis/plugins/yaml/products/geo_proxy_vis_fully_specified.yaml`
+file.
 
-@ Once this repository has been set up properly, you can remove this "Basic
-GeoIPS Plugin Template" section in the README.md, leaving the appropriate
-content for your package's README file.
+The test scripts use test data provided by CIRA.  To download the needed test
+data, run the `tests/scripts/get_test_data.sh` script.  This will download test
+data and place it in the `GEOIPS_TESTDATA_DIR` in a subdirectory named
+`pvis_test_data`.
 
-
-@package@ GeoIPS Plugin
-==========================
-
-The @package@ package is a GeoIPS-compatible plugin, intended to be used within
-the GeoIPS ecosystem.  Please see the
-[GeoIPS Documentation](https://github.com/NRLMMD-GEOIPS/geoips#readme) for
-more information on the GeoIPS plugin architecture and base infrastructure.
-
-Package Overview
------------------
-
-The @package@ plugin provides the capability for
-
-@ Please include a brief description of what capability this package provides.
-
-@ This section should be no more than 1-2 paragraphs, if you have additional
-@ information to include, please include in a "docs" subdirectory.
-
-@ Example overview:
-
-@ The template_basic_plugin package provides template files which can be used to create
-@ a fully compatible GeoIPS plugin.  This template repository is focused on basic functionality -
-@ ie, simple readers, products, output formats, etc.  Additional template repositories will be
-@ created for more sophisticated and complicated use cases.
-
-System Requirements
----------------------
-
-* geoips >= 1.10.0
-* Test data repos contained in $GEOIPS_TESTDATA_DIR for tests to pass.
-* @ Add any additional system requirements, such as gfortran, etc
-
-IF REQUIRED: Install base geoips package
-------------------------------------------------------------
-SKIP IF YOU HAVE ALREADY INSTALLED BASE GEOIPS ENVIRONMENT
-
-If GeoIPS Base is not yet installed, follow the
-[installation instructions](https://github.com/NRLMMD-GEOIPS/geoips#installation)
-within the geoips source repo documentation:
-
-Install @package@ package
-----------------------------
-```bash
-
-    # Ensure GeoIPS Python environment is enabled.
-
-    # Clone and install @package@
-    git clone https://github.com/NRLMMD-GEOIPS/@package@ $GEOIPS_PACKAGES_DIR/@package@
-    pip install -e $GEOIPS_PACKAGES_DIR/@package@
-
-    # Add any additional clone/install/setup steps here
-```
-
-Test @package@ installation
------------------------------
-```bash
-
-    # Ensure GeoIPS Python environment is enabled.
-
-    # This script will run ALL tests within this package
-    $GEOIPS_PACKAGES_DIR/@package@/tests/test_all.sh
-
-    # Individual direct test calls, for reference
-    $GEOIPS_PACKAGES_DIR/@package@/tests/scripts/<test_script_name>.sh
-```
+Output from these tests will be placed in various subdirectories in `tests/outputs/`.

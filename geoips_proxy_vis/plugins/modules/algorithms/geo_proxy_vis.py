@@ -114,16 +114,5 @@ def call(
     return out_dict
 
 
-def plot(data: np.ndarray, filename: str) -> None:
-    import matplotlib.pyplot as plt
-
-    fig = plt.figure(figsize=(10, 10))
-    fig.tight_layout()
-    ax = fig.add_subplot(1, 1, 1)
-    ax.axis("off")
-    ax.imshow(data, vmin=0.0, vmax=1.3, cmap="Greys_r")
-    fig.savefig(filename, dpi=1200, bbox_inches="tight", pad_inches=0, transparent=True)
-
-
 def _normalize_output_res(output_res) -> str:
     return output_res.lower().strip()

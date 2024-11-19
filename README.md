@@ -6,6 +6,10 @@ assumes that the generic Satpy reader plugin is used to provide input.  It is
 possible that this code will work with other satellites, however it has only
 been tested with Meteosat, Himawari, and GOES data.
 
+## Required Packages
+Requires the Generic Satpy Reader Plugin: https://github.com/robertdemariacira/geoips-add-satpy-reader
+Requires the ProxyVis package: https://github.com/galina-cira/ProxyVis
+
 ## Example Scripts/YAML Products
 
 Example YAML products have been provided demonstrating how to use this code to

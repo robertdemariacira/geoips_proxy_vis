@@ -43,9 +43,12 @@ def call(
 ):
     """Generates ProxyVis data that can be written as AWIPS2 compatible tiles.
 
-    Assumes that the given xarray_dict contains sub-dictionaries that group
-    channels by resolution.  The code assumes that there will be a
-    dictionary grouping 2km res data and a dictionary containing 0.5km res data.
+    This plugin is a wrapper around the high level ProxyVis API:
+    https://github.com/galina-cira/ProxyVis Many of the arguments are simply
+    passed through to the high level ProxyVis API. Assumes that the given
+    xarray_dict contains sub-dictionaries that group channels by resolution.
+    The code assumes that there will be a dictionary grouping 2km res data and a
+    dictionary containing 0.5km res data.
 
     Args:
         xarray_dict (Dict[str, Dict[str, Any]]): Dictionary of XArray Datasets.
@@ -65,21 +68,43 @@ def call(
             goes16, goes17, goes18, himawari8, himawari9, meteosat-9,
             meteosat-10, meteosat-11.
         minutes_interval (int): Length in minutes of the scan of the full disk.
-        res_2km_name (str, optional): The xarray_dict key whose value is the dictionary grouping 2km res data. Defaults to "2km".
-        res_0p5km_name (str, optional): The xarray_dict key whose value is the dictionary grouping 0.5km res data. Defaults to "0.5km".
-        lon_name (str, optional): The key in the visible sub-dictionary corresponding to the array of longitudes. Defaults to "longitude".
-        lat_name (str, optional): The key in the visible sub-dictionary corresponding to the array of latitudes. Defaults to "latitude".
-        pvis_alg (str, optional): The name of the ProxyVis algorithm to use. Defaults to "nighttime_pvis_main_two_eq".
-        dvis_alg (str, optional): _description_. Defaults to "vis_disp_sza".
-        use_saved_params (bool, optional): _description_. Defaults to True.
-        output_res (str, optional): _description_. Defaults to combine_dn_pvis.OUTPUT_RES_05KM.
-        fill_value (Optional[int], optional): _description_. Defaults to None.
+        res_2km_name (str, optional): The xarray_dict key whose value is the
+            dictionary grouping 2km res data. Defaults to "2km".
+        res_0p5km_name (str, optional): The xarray_dict key whose value is the
+            dictionary grouping 0.5km res data. Defaults to "0.5km".
+        lon_name (str, optional): The key in the visible sub-dictionary
+            corresponding to the array of longitudes. Defaults to "longitude".
+        lat_name (str, optional): The key in the visible sub-dictionary
+            corresponding to the array of latitudes. Defaults to "latitude".
+        pvis_alg (str, optional): The name of the ProxyVis algorithm to use.
+            Must be one of, "nighttime_pvis_main_two_eq",
+            "nighttime_pvis_main_one_eq", "nighttime_pvis_simple_two_eq",
+            "nighttime_pvis_simple_one_eq". Defaults to
+            "nighttime_pvis_main_two_eq".
+        dvis_alg (str, optional): The name of the visible normalization
+            algorithm. Currently, only "vis_disp_sza" is available. Defaults to
+            "vis_disp_sza".
+        use_saved_params (bool, optional): Whether to use static/dynamic
+            normalization for ProxyVis. Dynamic normalization works best when
+            estimated from the full disk GEO data. For sub-sector ProxyVis
+            images it is recommended to use saved normalization parameters.
+            Defaults to True.
+        output_res (str, optional): Decides what resolution will be used for
+            output.  Must be "2.0km" or "0.5km". Capitalization is ignored.
+            Defaults to "0.5km".
+        fill_value (Optional[int], optional): If specified, then NaNs will be
+            replaced with the given value. Defaults to None.
 
     Raises:
-        ValueError: _description_
+        ValueError: If provided output_res is not "2.0km" or "0.5km".
 
     Returns:
-        _type_: _description_
+        Dict[str, Dataset]: Dictionary containing two Datasets.  The first
+            Dataset is mapped to the key: "proxy_vis" and contains the generated
+            ProxyVis data.  This Dataset also contains metadata necessary for
+            outputing to AWIPS compatible netCDF tiles.  The second Dataset is
+            mapped to the key: "METADATA" and contains the same "METADATA"
+            Dataset passed in from the reader plugin.
     """
     norm_output_res = _normalize_output_res(output_res)
     if norm_output_res not in VALID_OUTPUT_RES:

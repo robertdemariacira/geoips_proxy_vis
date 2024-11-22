@@ -1,4 +1,4 @@
-"""Output formatter to write data as netCDF tiles."""
+"""Output formatter plugin to write data as AWIPS compatible netCDF tiles."""
 
 import logging
 from typing import Any, Dict, Tuple
@@ -25,7 +25,49 @@ def call(
     sector_id: str,
     tile_size: Tuple[int, int],
 ):
-    """Outputs data as netCDF tiles."""
+    """Writes data to AWIPS compatible netCDF files.
+
+    Wrapper for the Satpy AWIPS tile writer:
+    https://satpy.readthedocs.io/en/stable/api/satpy.writers.awips_tiled.html#satpy.writers.awips_tiled.AWIPSTiledWriter
+
+    The tiles writer requires the following attributes to be present on the output
+    DataArray object:
+
+    "area": Pyresample AreaDefinition describing the projection the data is in.
+    "product_center_latitude": The central latitude of the data.
+    "product_center_longitude": The central lognitude of the data.
+    "satellite_latitude": The satellite latitude.
+    "satellite_longitude": The satellite longitude.
+    "satellite_altitude": The satellite altitude.
+    "wavelength_float": The central wavelength of the data.
+    "start_time": The start time of the data.
+
+    Many of these can be found in the "oribital_parameters" attribute on
+    individual channel DataArray objects provided by Satpy.
+
+    Args:
+        xarray_obj (xr.Dataset): The Dataset to write.
+        xarray_var_name (str): The variable name in the Dataset to write.
+        output_var_name (str): The variable name as it will appear in the
+            output file.
+        config_path (str): The Satpy AWIPS tile writer requires configuration
+            information to determine how to map input data/metadata to the
+            output file as well as how to construct filenames.  This is the path
+            to the YAML configuration file that contains this information.
+        output_path (str): The directory to write tiles to.
+        environment_prefix (str): The environment prefix used by the tiles
+            writer to construct filenames and write metadata.
+        source_name (str): The source name used by the tiles writer to construct
+            filenames and write metadata.
+        sector_id (str): The sector ID used by the tiles writer to construct
+            filenames and write metadata.
+        tile_size (Tuple[int, int]): The size, in pixels, of each tile. Should
+            be a Tuple of (x, y).
+
+    Returns:
+        List[str]: List with a single element that just contains the output
+            directory.
+    """
     out_scene = satpy.Scene()
     out_scene[output_var_name] = xarray_obj[xarray_var_name][xarray_var_name]
 
@@ -45,5 +87,5 @@ def call(
 
 
 def _read_template(filename: str) -> Dict[str, Any]:
-    with open(filename, "r") as in_file:
+    with open(filename, "r", encoding="utf-8") as in_file:
         return yaml.safe_load(in_file)
